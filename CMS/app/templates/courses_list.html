@@ -27,7 +27,10 @@
                     <td>{{ course.description }}</td>
                     <td>{{ course.credits }}</td>
                     <td>
-                        <a href="#" class="btn">Enroll Course</a>
+                        <form method="post" action="{% url 'enroll_course' course.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Enroll</button>
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}

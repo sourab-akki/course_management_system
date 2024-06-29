@@ -1,8 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404,Enrollment
 from django.contrib.auth import login
 from .forms import StudentSignupForm, ProfessorSignupForm
-from .models import Student, Professor,Course
-# Create your views here.
+from .models import Student, Professor,Course,Enrollment
+from django.utils import timezone
+
 
 def student_signup(request):
     if request.method == 'POST':
@@ -41,4 +42,11 @@ def courses_list(request):
     return render(request, 'courses_list.html', {'courses': courses})
 
 
+def enroll_course(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    Enrollment.objects.create(student=request.user, course=course, date_enrolled=timezone.now().date())
+    return redirect('student_home')
 
+def enrollments_list(request):
+    enrollments = Enrollment.objects.filter(student=request.user)
+    return render(request, 'enrollments_list.html', {'enrollments': enrollments})
