@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login
 from .forms import StudentSignupForm, ProfessorSignupForm
-from .models import Student, Professor
+from .models import Student, Professor,Course
 # Create your views here.
 
 def student_signup(request):
@@ -30,4 +30,15 @@ def professor_signup(request):
 def student_home(request):
     student = request.user
     return render(request, 'home.html', {'student': student})
+
+
+def professors_list(request):
+    professors = Professor.objects.all()
+    return render(request, 'professors_list.html', {'professors': professors})
+
+def courses_list(request):
+    courses = Course.objects.all()
+    return render(request, 'courses_list.html', {'courses': courses})
+
+
 
