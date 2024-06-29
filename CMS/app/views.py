@@ -26,3 +26,8 @@ def professor_signup(request):
         form = ProfessorSignupForm()
     return render(request, 'professor_signup.html', {'form': form, 'user_type': 'Professor'})
 
+
+def student_home(request):
+    student = request.user
+    return render(request, 'home.html', {'student': student})
+

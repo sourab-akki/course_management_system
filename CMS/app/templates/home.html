@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h3>Welcome, {{ student.username }}</h3>
+
+        <!-- Student Details Table -->
+        <table class="striped">
+            <thead>
+            <tr>
+                <th>Username</th>
+                 <th>First Name</th>
+                 <th>Last Name</th>
+                 <th>Email</th>
+                 <th>Phone Number</th>
+                 <th>Address </th>
+                 <th>#</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td>{{ student.username }}</td>
+                <td>{{ student.first_name }}</td>
+                <td>{{ student.last_name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.phone_number }}</td>
+                 <td>{{ student.address }}</td>
+                <td><a href="{% url 'edit_student' student.id %}" class="btn">Edit Details</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <!-- Cards for Navigation -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">See All Professors</span>
+                        <p>View the list of all professors available in the system.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'professors_list' %}" class="btn">View Professors</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">See All Available Courses</span>
+                        <p>Explore all the courses that you can enroll in.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'courses_list' %}" class="btn">View Courses</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">See Existing Enrollments</span>
+                        <p>Check the courses you are currently enrolled in.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'enrollments_list' %}" class="btn">View Enrollments</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
