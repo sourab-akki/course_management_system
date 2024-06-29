@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Student,Professor
+from .models import Student,Professor,Course
 
 class StudentSignupForm(UserCreationForm):
     address = forms.CharField(widget=forms.Textarea)
@@ -16,3 +16,8 @@ class ProfessorSignupForm(forms.ModelForm):
         model = Professor
         fields = ('last_name', 'first_name', 'email', 'department')
 
+
+class CourseForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ['course_name', 'description', 'credits']

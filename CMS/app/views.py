@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404,Enrollment
 from django.contrib.auth import login
-from .forms import StudentSignupForm, ProfessorSignupForm
+from .forms import StudentSignupForm, ProfessorSignupForm,CourseForm
 from .models import Student, Professor,Course,Enrollment
 from django.utils import timezone
 
@@ -50,3 +50,15 @@ def enroll_course(request, course_id):
 def enrollments_list(request):
     enrollments = Enrollment.objects.filter(student=request.user)
     return render(request, 'enrollments_list.html', {'enrollments': enrollments})
+
+def add_course(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            course = form.save(commit=False)
+            course.professor = Professor.objects.get(user=request.user)
+            course.save()
+            return redirect('professor_home')
+    else:
+        form = CourseForm()
+    return render(request, 'add_course.html', {'form': form})
