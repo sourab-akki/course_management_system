@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Enrollments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h3>Student Enrollments</h3>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Course Name</th>
+                    <th>Course Description</th>
+                    <th>Date Enrolled</th>
+                    <th>Credits</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enrollment in enrollments %}
+                <tr>
+                    <td>{{ enrollment.student.first_name }} {{ enrollment.student.last_name }}</td>
+                    <td>{{ enrollment.course.course_name }}</td>
+                    <td>{{ enrollment.course.description }}</td>
+                    <td>{{ enrollment.date_enrolled }}</td>
+                    <td>{{ enrollment.course.credits }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="center">
+            <a href="{% url 'professor_dashboard' %}" class="btn">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

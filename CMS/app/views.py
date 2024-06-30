@@ -37,6 +37,9 @@ def professors_list(request):
     professors = Professor.objects.all()
     return render(request, 'professors_list.html', {'professors': professors})
 
+def students_list(request):
+    students = Student.objects.all()
+    return render(request, 'student_list.html', {'students': students})
 def courses_list(request):
     courses = Course.objects.all()
     return render(request, 'courses_list.html', {'courses': courses})
@@ -54,6 +57,11 @@ def enrollments_list(request):
 def professor_dashboard(request):
     professor = Professor.objects.get(user=request.user)
     return render(request, 'professor_dashboard.html', {'professor': professor})
+
+def professor_enrollments(request):
+    professor = Professor.objects.get(user=request.user)
+    enrollments = Enrollment.objects.filter(course__professor=professor)
+    return render(request, 'professor_enrollments.html', {'enrollments': enrollments})
 
 def add_course(request):
     if request.method == 'POST':

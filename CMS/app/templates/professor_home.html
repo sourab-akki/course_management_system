@@ -14,7 +14,18 @@
 
         <!-- Cards for Navigation -->
             <div class="row">
-            <div class="col s12 m6">
+                <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">See All Students</span>
+                        <p>View the list of all students available in the system.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'students_list' %}" class="btn">View Students</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Add Course</span>
@@ -25,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m4">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">See Student Enrollments</span>
