@@ -8,29 +8,33 @@
 <style>
     td,th{
         border:1px solid lightgrey;
+        text-align:center;
     }
 </style>
 </head>
 <body>
     <div class="container">
         <h4 class="center">All Students</h4>
-        <table class="striped">
+        <table class="striped center">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Address</th>
-
+                    <th>Contact Number</th>
                 </tr>
             </thead>
             <tbody>
                 {% for student in students %}
                 <tr>
+                    <td>{{student.pk}}</td>
                     <td>{{ student.first_name }}</td>
                     <td>{{ student.last_name }}</td>
+                    <td>{{ student.email }}</td>
                     <td>{{ student.address }}</td>
-                    <td>{{ student.department }}</td>
+                    <td>{{student.phone_number}}</td>
 
                 </tr>
                 {% endfor %}

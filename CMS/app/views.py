@@ -76,16 +76,25 @@ def professor_dashboard(request):
     return render(request, 'professor_home.html', {'professor': professor})
 
 def professor_enrollments(request):
-    professor = Professor.objects.get(user=request.user)
+    professor_id = request.session.get('professor_id')
+    professor = Professor.objects.get(pk=professor_id)
     enrollments = Enrollment.objects.filter(course__professor=professor)
     return render(request, 'professor_enrollments.html', {'enrollments': enrollments})
 
+def professor_courses(request):
+    professor_id = request.session.get('professor_id')
+    professor = Professor.objects.get(pk=professor_id)
+    courses = Course.objects.filter(professor=professor)
+    return render(request, 'professor_courses.html', {'courses': courses})
+
 def add_course(request):
+    professor_id = request.session.get('professor_id')
+    professor = Professor.objects.get(pk=professor_id)
     if request.method == 'POST':
         form = CourseForm(request.POST)
         if form.is_valid():
             course = form.save(commit=False)
-            course.professor = Professor.objects.get(user=request.user)
+            course.professor = professor
             course.save()
             return redirect('professor_home')
     else:
