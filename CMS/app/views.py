@@ -51,6 +51,10 @@ def enrollments_list(request):
     enrollments = Enrollment.objects.filter(student=request.user)
     return render(request, 'enrollments_list.html', {'enrollments': enrollments})
 
+def professor_dashboard(request):
+    professor = Professor.objects.get(user=request.user)
+    return render(request, 'professor_dashboard.html', {'professor': professor})
+
 def add_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST)
