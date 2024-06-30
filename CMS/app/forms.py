@@ -8,7 +8,18 @@ class StudentSignupForm(UserCreationForm):
 
     class Meta:
         model = Student
-        fields = ('username', 'first_name', 'last_name', 'email', 'address', 'phone_number', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'email', 'address', 'phone_number', 'password1')
+
+    def __init__(self, *args, **kwargs):
+        super(StudentSignupForm, self).__init__(*args, **kwargs)
+        self.fields.pop('password2')
+        self.fields['phone_number'].label = "Phone Number (Username)"
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get('phone_number')
+        if Student.objects.filter(phone_number=phone_number).exists():
+            raise forms.ValidationError("A user with that phone number already exists.")
+        return phone_number
 
 
 class EditStudentForm(UserChangeForm):
@@ -16,7 +27,7 @@ class EditStudentForm(UserChangeForm):
 
     class Meta:
         model = Student
-        fields = ('username','first_name', 'last_name', 'email', 'address', 'phone_number')
+        fields = ('first_name', 'last_name', 'email', 'address', 'phone_number')
 
 
 

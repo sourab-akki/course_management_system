@@ -13,13 +13,13 @@
 </head>
 <body>
     <div class="container">
-        <h3 class="center">Welcome, {{ student.username }}</h3>
+        <h3 class="center">Welcome, {{ student.first_name }}</h3>
 
         <!-- Student Details Table -->
         <table class="striped centered table ">
             <thead>
             <tr>
-                <th>Username</th>
+
                  <th>First Name</th>
                  <th>Last Name</th>
                  <th>Email</th>
@@ -31,7 +31,7 @@
             <tbody>
             <tr>
 
-                <td>{{ student.username }}</td>
+
                 <td>{{ student.first_name }}</td>
                 <td>{{ student.last_name }}</td>
                 <td>{{ student.email }}</td>

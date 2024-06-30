@@ -32,7 +32,8 @@ def professor_signup(request):
     if request.method == 'POST':
         form = ProfessorSignupForm(request.POST)
         if form.is_valid():
-            form.save()
+            professor = form.save()
+            request.session['professor_id'] = professor.id
             return redirect('professor_home')
     else:
         form = ProfessorSignupForm()
@@ -66,8 +67,13 @@ def enrollments_list(request):
     return render(request, 'enrollments_list.html', {'enrollments': enrollments})
 
 def professor_dashboard(request):
-    professor = Professor.objects.get(user=request.user)
-    return render(request, 'professor_dashboard.html', {'professor': professor})
+    professor_id = request.session.get('professor_id')
+    if professor_id:
+        professor = get_object_or_404(Professor, id=professor_id)
+    else:
+        professor = None
+    professor = Professor.objects.get(pk=professor_id)
+    return render(request, 'professor_home.html', {'professor': professor})
 
 def professor_enrollments(request):
     professor = Professor.objects.get(user=request.user)

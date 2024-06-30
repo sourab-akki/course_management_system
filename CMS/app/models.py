@@ -5,7 +5,9 @@ from django.contrib.auth.models import AbstractUser
 class Student(AbstractUser):
     # Additional fields for the Student model
     address = models.TextField()
-    phone_number = models.CharField(max_length=15)
+    phone_number = models.CharField(max_length=15,unique=True)
+    USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'email']
     def __str__(self):
         return f"{self.username} ({self.first_name} {self.last_name})"
 

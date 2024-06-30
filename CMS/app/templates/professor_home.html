@@ -2,16 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student Home</title>
+    <title>Professor Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<style>
+    td,th{
+        border:1px solid lightgrey;
+    }
+</style>
 </head>
 <body>
     <div class="container">
-        <h3>Welcome, Professor {{professor.first_name}} </h3>
+        <h4 class="center">Welcome, Professor Dashboard </h4>
+<br>
+        <table class="striped centered table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                 <th>First Name</th>
+                 <th>Last Name</th>
+                 <th>Email</th>
+                 <th>Department</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ professor.pk }}</td>
+                <td>{{ professor.first_name }}</td>
+                <td>{{ professor.last_name }}</td>
+                <td>{{ professor.email }}</td>
+                <td>{{ professor.department }}</td>
 
 
-
+            </tr>
+            </tbody>
+        </table>
+        <br><br>
         <!-- Cards for Navigation -->
             <div class="row">
                 <div class="col s12 m4">
@@ -21,7 +48,7 @@
                         <p>View the list of all students available in the system.</p>
                     </div>
                     <div class="card-action">
-                        <a href="{% url 'students_list' %}" class="btn">View Students</a>
+                        <a href="{% url 'student_list' %}" class="btn">View Students</a>
                     </div>
                 </div>
             </div>

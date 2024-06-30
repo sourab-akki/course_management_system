@@ -10,11 +10,15 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2>{{ user_type }} Sign Up</h2>
+        <h4 class="center">{{ user_type }} Sign Up</h4>
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <center>
+                <br>
+                <button type="submit" class="btn btn-primary" style="width:180px;">Sign Up</button>
+            </center>
+
         </form>
     </div>
 </body>
