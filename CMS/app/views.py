@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect,get_object_or_404,Enrollment
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import login
-from .forms import StudentSignupForm, ProfessorSignupForm,CourseForm
+from .forms import StudentSignupForm, ProfessorSignupForm,CourseForm,EditStudentForm
 from .models import Student, Professor,Course,Enrollment
 from django.utils import timezone
 
@@ -16,6 +16,17 @@ def student_signup(request):
         form = StudentSignupForm()
     return render(request, 'student_signup.html', {'form': form, 'user_type': 'Student'})
 
+def edit_student(request):
+    student = request.user
+    print("student",student.username)
+    if request.method == 'POST':
+        form = EditStudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('student_home')  # Redirect to student home after successful update
+    else:
+        form = EditStudentForm(instance=student)
+    return render(request, 'edit_student.html', {'form': form})
 
 def professor_signup(request):
     if request.method == 'POST':

@@ -5,13 +5,18 @@
     <title>Student Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<style>
+    td,th{
+        border:1px solid lightgrey;
+    }
+</style>
 </head>
 <body>
     <div class="container">
-        <h3>Welcome, {{ student.username }}</h3>
+        <h3 class="center">Welcome, {{ student.username }}</h3>
 
         <!-- Student Details Table -->
-        <table class="striped">
+        <table class="striped centered table ">
             <thead>
             <tr>
                 <th>Username</th>
@@ -32,12 +37,12 @@
                 <td>{{ student.email }}</td>
                 <td>{{ student.phone_number }}</td>
                  <td>{{ student.address }}</td>
-                <td><a href="{% url 'edit_student' student.id %}" class="btn">Edit Details</a></td>
+                <td><a href="{% url 'edit_student' %}" class="btn">Edit Details</a></td>
             </tr>
             </tbody>
         </table>
 
-
+<br><br>
         <!-- Cards for Navigation -->
         <div class="row">
             <div class="col s12 m4">
