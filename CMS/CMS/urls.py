@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from app.views import professor_courses,edit_student,students_list,professor_enrollments,professor_dashboard,add_course,enrollments_list,enroll_course,courses_list,professors_list,student_home,student_signup,professor_signup
+from app.views import professor_courses_for_students,professor_courses,edit_student,students_list,professor_enrollments,professor_dashboard,add_course,enrollments_list,enroll_course,courses_list,professors_list,student_home,student_signup,professor_signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,4 +19,5 @@ urlpatterns = [
     path('professor/courses/', professor_courses, name='professor_courses'),
     path('students/', students_list, name='student_list'),
     path('student/edit/', edit_student, name='edit_student'),
+    path('professor/<int:professor_id>/courses/', professor_courses_for_students, name='professor_courses'),
 ]

@@ -60,7 +60,7 @@ def courses_list(request):
 def enroll_course(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     Enrollment.objects.create(student=request.user, course=course, date_enrolled=timezone.now().date())
-    return redirect('student_home')
+    return redirect('enrollments_list')
 
 def enrollments_list(request):
     enrollments = Enrollment.objects.filter(student=request.user)
@@ -86,6 +86,14 @@ def professor_courses(request):
     professor = Professor.objects.get(pk=professor_id)
     courses = Course.objects.filter(professor=professor)
     return render(request, 'professor_courses.html', {'courses': courses})
+
+def professor_courses_for_students(request, professor_id):
+    professor = Professor.objects.get(pk=professor_id)
+    courses = Course.objects.filter(professor=professor)
+    print("professor_id",professor_id)
+    print("courses")
+    print(courses)
+    return render(request, 'professor_courses_for_students.html', {'courses': courses, 'professor': professor})
 
 def add_course(request):
     professor_id = request.session.get('professor_id')
